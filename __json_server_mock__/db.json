@@ -6,7 +6,7 @@
     },
     {
       "id": 2,
-      "name": "jiangshasha"
+      "name": "甘蔗"
     },
     {
       "id": 3,
@@ -35,7 +35,7 @@
     {
       "id": 3,
       "name": "物料管理系统",
-      "personId": 2,
+      "personId": 3,
       "organization": "物料组",
       "created": 1604989757139
     }
