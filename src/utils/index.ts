@@ -1,7 +1,7 @@
 /*
  * @Author: jiangshasha
  * @Date: 2021-06-26 17:57:20
- * @LastEditTime: 2021-06-28 16:05:22
+ * @LastEditTime: 2021-06-28 16:46:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /jira/src/utils/index.js
@@ -10,7 +10,7 @@
 import { useEffect, useState } from "react";
 
 // !!将值转换成布尔值
-export const isFlasy = (value: any) => (value === 0 ? false : !value);
+export const isFlasy = (value: unknown) => (value === 0 ? false : !value);
 
 export const cleanObject = (object: object) => {
   const result = { ...object };
@@ -48,7 +48,7 @@ export const useMount = (callback: () => void) => {
 // };
 
 // 自定义Hook防抖
-export const useDebounce = (value: any, delay?: number) => {
+export const useDebounce = <V>(value: V, delay?: number) => {
   const [debouncedValue, setDebouncedValye] = useState(value);
 
   // 在每次value变化之后，设置一个定时器
