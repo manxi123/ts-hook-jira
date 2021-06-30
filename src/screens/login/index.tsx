@@ -1,7 +1,7 @@
 /*
  * @Author: jiangshasha
  * @Date: 2021-06-28 17:14:15
- * @LastEditTime: 2021-06-29 11:31:39
+ * @LastEditTime: 2021-06-30 19:44:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /jira/src/screens/login/index.tsx
@@ -13,7 +13,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
 export const LoginScreen = () => {
   const login = (param: { username: string; password: string }) => {
-    fetch(`${apiUrl}/login}`, {
+    fetch(`${apiUrl}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
