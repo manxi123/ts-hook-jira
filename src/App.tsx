@@ -1,21 +1,22 @@
 /*
  * @Author: your name
  * @Date: 2021-06-25 15:51:25
- * @LastEditTime: 2021-06-29 10:44:51
+ * @LastEditTime: 2021-08-16 11:37:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /jira/src/App.tsx
  */
+import { useAuth } from "context/auth-context";
 import React from "react";
+import { UnauthenticatedApp } from "unauthenticated-app";
+import { AuthenticatedApp } from "authenticated-app";
 import "./App.css";
-import { ProjectListScreen } from "./screens/project-list/index";
-import { LoginScreen } from "./screens/login/index";
 
 function App() {
+  const user = useAuth();
   return (
     <div className="App">
-      {/* <ProjectListScreen /> */}
-      <LoginScreen />
+      {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
     </div>
   );
 }

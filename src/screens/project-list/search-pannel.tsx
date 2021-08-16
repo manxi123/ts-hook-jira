@@ -1,12 +1,11 @@
 /*
  * @Author: jiangshasha
  * @Date: 2021-06-26 16:40:04
- * @LastEditTime: 2021-06-28 15:58:13
+ * @LastEditTime: 2021-08-16 11:58:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /jira/src/screens/project-list/search-pannel.tsx
  */
-import { useState } from "react";
 import React from "react";
 
 interface searchPannelProps {
@@ -24,6 +23,7 @@ export interface User {
   email: string;
   title: string;
   organization: string;
+  token: string;
 }
 
 export const SearchPannel = ({ param, users, setParam }: searchPannelProps) => {
