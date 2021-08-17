@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-06-25 15:51:25
- * @LastEditTime: 2021-08-16 11:37:10
+ * @LastEditTime: 2021-08-17 11:20:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /jira/src/App.tsx
@@ -13,7 +13,7 @@ import { AuthenticatedApp } from "authenticated-app";
 import "./App.css";
 
 function App() {
-  const user = useAuth();
+  const { user } = useAuth();
   return (
     <div className="App">
       {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}

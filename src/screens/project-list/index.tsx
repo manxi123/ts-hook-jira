@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2021-06-26 16:38:15
- * @LastEditTime: 2021-06-28 16:07:09
- * @LastEditors: your name
+ * @LastEditTime: 2021-08-17 11:21:45
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /jira/src/screens/project-list/index.tsx
  */
@@ -12,6 +12,7 @@ import { cleanObject, useDebounce } from "utils";
 import { List } from "./list";
 import { SearchPannel } from "./search-pannel";
 import * as qs from "qs";
+import { useHttp } from "utils/http";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -28,22 +29,14 @@ export const ProjectListScreen = () => {
 
   const [users, setUsers] = useState([]);
 
+  const client = useHttp();
+
   useEffect(() => {
-    fetch(
-      `${apiUrl}/projects?${qs.stringify(cleanObject(debouncedParam))}`
-    ).then(async (response) => {
-      if (response.ok) {
-        setList(await response.json());
-      }
-    });
+    client("projects", { data: cleanObject(debouncedParam) }).then(setList);
   }, [debouncedParam]);
 
   useEffect(() => {
-    fetch(`${apiUrl}/users`).then(async (response) => {
-      if (response.ok) {
-        setUsers(await response.json());
-      }
-    });
+    client("users").then(setUsers);
   }, []);
 
   return (

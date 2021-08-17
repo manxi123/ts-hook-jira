@@ -1,29 +1,19 @@
 /*
  * @Author: jiangshasha
  * @Date: 2021-06-28 17:14:15
- * @LastEditTime: 2021-08-16 11:21:39
+ * @LastEditTime: 2021-08-17 11:18:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /jira/src/screens/login/index.tsx
  */
 
+import { useAuth } from "context/auth-context";
 import React, { FormEvent } from "react";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export const LoginScreen = () => {
-  const login = (param: { username: string; password: string }) => {
-    fetch(`${apiUrl}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(param),
-    }).then(async (response) => {
-      if (response.ok) {
-      }
-    });
-  };
+  const { login } = useAuth();
 
   const handelSubmit = (event: FormEvent<HTMLFormElement>) => {
     // 阻止表单默认行为
