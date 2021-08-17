@@ -1,7 +1,7 @@
 /*
  * @Author: jiangshasha
  * @Date: 2021-06-30 20:14:01
- * @LastEditTime: 2021-07-01 17:05:08
+ * @LastEditTime: 2021-08-17 15:04:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /jira/src/context/auth-context.ts
@@ -11,11 +11,23 @@ import { User } from "screens/project-list/search-pannel";
 
 import React from "react";
 import * as auth from "auth-provider";
+import { http } from "utils/http";
+import { useMount } from "utils";
 
 interface AuthForm {
   username: string;
   password: string;
 }
+
+const bootstrapToken = async () => {
+  let user = null;
+  const token = auth.getToken();
+  if (token) {
+    const data = await http("me", { token });
+    user = data.user;
+  }
+  return user;
+};
 
 const AuthContext = React.createContext<
   | {
@@ -37,6 +49,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const register = (form: AuthForm) =>
     auth.register(form).then((user) => setUser(user));
   const logout = () => auth.logout().then(() => setUser(null));
+
+  useMount(() => {
+    bootstrapToken().then(setUser);
+  });
 
   return (
     <AuthContext.Provider
